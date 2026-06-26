@@ -239,6 +239,11 @@
             "assets/imagem9.jpeg",
         ];
 
+        images.forEach(src => {
+          const img = new Image();
+          img.src = src;
+        });
+
         let index = 0;
 
         function changeBackground() {
