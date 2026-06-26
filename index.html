@@ -228,29 +228,31 @@
             });
         });
 
-        const images = [
-            "assets/imagem1.jpeg",
-            "assets/imagem2.jpeg",
-            "assets/imagem3.jpeg",
-            "assets/imagem4.jpeg",
-            "assets/imagem5.jpeg",
-            "assets/imagem6.jpeg",
-            "assets/imagem8.jpeg",
-            "assets/imagem9.jpeg",
-        ];
+const images = [
+  "assets/imagem1.jpg",
+  "assets/imagem2.jpg",
+  "assets/imagem3.jpg",
+  "assets/imagem4.jpg"
+];
 
-        let index = 0;
+let index = 0;
 
-        function changeBackground() {
-            document.body.style.backgroundImage = `url('${images[index]}')`;
-            index = (index + 1) % images.length;
-        }
+function changeBackground() {
+  const img = new Image();
+  img.src = images[index];
 
-        // inicia imediatamente
-        changeBackground();
+  img.onload = () => {
+    document.body.style.backgroundImage = `url('${images[index]}?v=${Date.now()}')`;
+  };
 
-        // troca a cada 2 segundos
-        setInterval(changeBackground, 2000);
+  index = (index + 1) % images.length;
+}
+
+// inicia corretamente
+changeBackground();
+
+// intervalo mais estável pro Safari
+setInterval(changeBackground, 3000);
     </script>
 
 </body>
